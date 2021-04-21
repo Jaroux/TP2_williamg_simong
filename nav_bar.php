@@ -2,7 +2,7 @@
 $activePage = basename($_SERVER['PHP_SELF'], ".php");
 ?>
 
-<nav class="navbar-expand-sm navbar navbar-dark bg-dark">
+<nav class=" <?= ($activePage == 'index' || $activePage == 'produits') ? 'echo navbar-expand-sm ':'echo navbar-expand '?> navbar navbar-dark bg-dark">
   <div class="container-fluid">
 
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
   </button>
 
     <div class="collapse navbar-collapse" id="navbarText">
-    <img src="images/logo_voiture.png" alt="" width="120" height="55" class="mx-4 d-none d-sm-none d-md-block">
+    <img src="images/logo_voiture.png" alt="" width="120" height="55" class="mx-4 <?= ($activePage == 'index' || $activePage == 'produits') ? 'echo d-none d-sm-none d-md-block':'echo d-none d-sm-block'?>">
     
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
