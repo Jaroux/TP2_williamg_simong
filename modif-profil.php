@@ -1,4 +1,4 @@
-<?php session_start();?>
+
 <?php
     if($_SESSION["isConnected"] = false) {
         header("Location: connexion.php");
@@ -14,6 +14,8 @@
     <title>Boutique</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
+<?php require_once 'includes/nav_bar.php'; ?>
+
 <body>
     <main>
     <h1 class="text-center">Modification du profil</h1>
@@ -30,7 +32,7 @@
 </div>
 
 <div class="form-group">
-    <label for="txtMotDePasse">Nouveau mot de passe:</label>
+    <label for="txtMotDePasseNouveau">Nouveau mot de passe:</label>
     <input type="text" name="txtMotDePasseNouveau" id="txtMotDePasseNouveau" class="form-control" required />
 </div>
 <div class="form-group">
@@ -77,6 +79,8 @@ require_once 'includes/connexion-bd.php';
 
 include('includes/connexion-bd.php');
 
+    if (isset($_POST["formInscription"])){
+        if (!empty($_POST["txtLogin"]) && !empty($_POST["txtMotDePasse"])){
     $login = $_POST['txtLogin'];
     $motDePasse = $_POST['txtMotDePasse'];
     $nom = $_POST['txtNom'];
@@ -87,27 +91,30 @@ include('includes/connexion-bd.php');
     $codePostal = $_POST['txtPostal'];
     $email = $_POST['txtEmail'];
     $motDePasseNouveau = $_POST['txtMotDePasseNouveau'];
-        
-        $req = $conn->prepare('SELECT * FROM clients WHERE login = :login AND motPasse = :motPasse');
+
+    $req = $conn->prepare('SELECT * FROM clients WHERE login = :login AND motPasse = :motPasse');
     
-        $req->bindValue(':login', $login, PDO::PARAM_STR);
-        $req->bindValue(':motPasse', $password, PDO::PARAM_STR);
-    
-        $req->execute();
-    
-        $nbComptes = $req->rowCount();
-    
-        $req->closeCursor();
-    
-        if ($nbComptes == 0) {
-            $_SESSION["isConnected"] = false;
-        }
-    
-        else{
-            $_SESSION["isConnected"] = true;
-            $compte = new Compte($nom,$prenom,$adresse,$ville,$province,$codePostal,$login,$motDePasseNouveau,$email);
-            $compteBD->update($compte);
-        }    
+    $req->bindValue(':login', $login, PDO::PARAM_STR);
+    $req->bindValue(':motPasse', $password, PDO::PARAM_STR);
+
+    $req->execute();
+
+    $nbComptes = $req->rowCount();
+
+    $req->closeCursor();
+
+    if ($nbComptes == 0) {
+        $_SESSION["isConnected"] = false;
+    }
+
+    else {
+        $_SESSION["isConnected"] = true;
+        $compte = new Compte($nom,$prenom,$adresse,$ville,$province,$codePostal,$login,$motDePasseNouveau,$email);
+        $compteBD->update($compte);
+    } 
+    }
+}
+   
 
         
 ?> 

@@ -65,7 +65,7 @@ class Compte {
     }
 
     public function setProvince($province) {
-        if (empty($adresse)) {
+        if (empty($province)) {
             trigger_error('La province est vide!',E_USER_ERROR);
             return;
         }

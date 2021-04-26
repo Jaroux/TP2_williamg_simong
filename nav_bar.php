@@ -20,11 +20,15 @@ session_start();
         </li>
 
         <li class=" d-flex nav-item">
-          <a class="nav-link navbar-brand navbar-expand <?= ($activePage == 'inscription') ? 'active':''; ?>" href="inscription.php" aria-current="page"> Connexion</a>
+          <a class="nav-link navbar-brand navbar-expand <?= ($activePage == 'connexion') ? 'active':''; ?>" href="connexion.php" aria-current="page"> Connexion</a>
         </li>
 
         <li class="d-flex nav-item">
           <a class="nav-link navbar-brand navbar-expand <?= ($activePage == 'produits') ? 'active':''; ?>" href="produits.php" aria-current="page"> Produits</a>
+        </li>
+
+        <li class="d-flex nav-item">
+          <a class="nav-link navbar-brand navbar-expand <?= ($activePage == 'modif-profil') ? 'active':''; ?>" href="modif-profil.php" aria-current="page"> Modifier Profil</a>
         </li>
       </ul>
 
