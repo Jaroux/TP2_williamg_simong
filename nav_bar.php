@@ -1,5 +1,6 @@
 <?php 
 $activePage = basename($_SERVER['PHP_SELF'], ".php");
+session_start();
 ?>
 
 <nav class=" <?= ($activePage == 'index' || $activePage == 'produits') ? 'echo navbar-expand-sm ':'echo navbar-expand '?> navbar navbar-dark bg-dark">
@@ -28,10 +29,24 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
       </ul>
 
       </div>
-      <?= ($activePage == 'index' || $activePage == 'produits') ? 'echo <form class="d-flex mx-2">
-      <input class="form-control me-2" placeholder="Rechercher un produit">
-      <button class="btn btn-outline-success" type="submit">Go</button>
+      <?= ($activePage == 'index' || $activePage == 'produits') ? 'echo <form action="#" method="get" class="d-flex mx-2">
+      <input class="form-control me-2" name="motRecherche" placeholder="Rechercher un produit">
+      <button class="btn btn-outline-success" name="rechercher" type="submit">Go</button>
       </form> ':''; ?>
+        <?php 
+        if(isset($_GET['rechercher'])){
+          if (isset($_GET['motRecherche'])){
+            if ($_GET['motRecherche'] == ""){
+              echo ' <p class="text-danger text-center"> Champ vide </p>';
+            }
+            else{
+            $_SESSION["motRecherche"] = $_GET["motRecherche"]; 
+            header("location: recherche-produit.php");
+            exit();
+            }
+          }
+        }
+        ?>
   </div>
 </nav>
 <div class="container"> 
