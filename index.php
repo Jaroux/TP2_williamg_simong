@@ -19,7 +19,7 @@ require_once 'includes/nav_bar.php';
 ?>
 
 <?php
-require_once 'class/produitsDAO.class.php';
+require_once 'classes/produitsDAO.class.php';
 require_once 'includes/connexion-bd.php';
 
 try{

@@ -13,7 +13,7 @@
 <body>
 <?php 
 require_once 'includes/nav_bar.php';
-require_once 'class/produitsDAO.class.php';
+require_once 'classes/produitsDAO.class.php';
 require_once 'includes/connexion-bd.php';
 
 try{
